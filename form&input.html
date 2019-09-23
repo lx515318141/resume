@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form&input</title>
+</head>
+<body>
+    <a>form用法</a>
+    <form action="users" method="POST">
+        <input type="text" name="usersname">
+        <input type="password" name="password">
+        <input type="submit" value="提交">
+    </form>
+    <a>form下面必须有一个提交按钮，否则无法提交信息。当input的type为submit时input则为提交按钮</a><br>
+    <a>form也可以有target且用法与a标签一样可以与iframe联用</a><br>
+    <a>password用于输入密码，可以使输入端密码在页面中显示为点</a>
+    <hr>
+    <a>input/button用法</a>
+    <form action="users" method="POST">
+        <input type="text" name="usersname">
+        <input type="password" name="password">
+        <button>button</button>
+    </form>
+    <a>当form下面的button标签没有type时button标签自动升级为提交按钮，有type则按type执行</a>
+    <hr>
+    <a>inputd的type=checkbox用法</a>
+    <form action="users" method="POST">
+        <label>用户名<input type="text" name="usersname"></label>
+        <label>密码<input type="password" name="password"></label><br>
+        喜欢的水果
+        <label><input type="checkbox" name="fruit" value="apple">苹果</label>
+        <label><input type="checkbox" name="fruit" value="banana">香蕉</label>
+        <label><input type="checkbox" name="fruit" value="pear">梨</label><br>
+        <input type="submit" value="提交">
+    </form>
+    <a>用label将input及其前后的文字包起来，可以input和文字进行关联，即点击文字相当于点击input</a><br>
+    <a>checkbox为多选框，需要有name否则服务器看不到是否勾选，如只有name则提交时勾选为on不勾选看不到，
+        如既有name也有value则提交时可看到fruit=apple且name一致，则服务器可看到选择的答案对应
+        同一个题目，即多选。
+    </a>
+    <hr>
+    <a>input的type=radio用法</a>
+    <form action="users" method="POST">
+        喜欢我
+        <label><input type="radio" name="loveme" value="yes">YES</label>
+        <label><input type="radio" name="loveme" value="no">NO</label>
+        <input type="submit" value="提交">
+    </form>
+    <a>radio为单选框，radio同样需要name和value，当存在多个input radio且name一致时则只能选择一个
+        input，即单选，提交请求时服务器可看到选择结果。
+    </a>
+    <hr>
+    <a>下拉列表</a>
+    <form action="users" method="POST">
+        <select name="group" multiple>
+            <option value="">-</option>
+            <option value="1">第一组</option>
+            <option value="2">第二组</option>
+            <option value="3" disabled>第三组</option>
+            <option value="4" selected>第四组</option>
+        </select>
+        <input type="submit" value="提交">
+    </form>
+    <a>select一样需要name，multiple表示可多选一件选择一项之后，按住Ctrl可以继续选择，
+        disabled表示不可选择，selected表示默认选择，
+    </a>
+    <hr>
+    <a>多行文本</a>
+    <form action="users" method="POST">
+        <textarea style="resize: none; width: 100px;height: 100px;" 
+        name="爱好" id="" cols="30" rows="10"></textarea>
+        <input type="submit" value="提交">
+    </form>
+    <a>textarea默认是可自由调节宽高的，可以使用style="resize: none;"来固定它
+       可以通过width和height来控制宽高，也可以通过cols和rows（列和行）来控制，但没有前一种方法精确。
+    </a>
+    <hr>
+    <a>当把form的method改为get时提交之后可直接在网址栏看到提交的内容</a>
+
+</body>
+</html>
