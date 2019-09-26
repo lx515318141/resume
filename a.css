@@ -1,0 +1,257 @@
+body {
+    background-color: #efefef;
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+ul,ol{
+    list-style: none;
+}
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+h1,h2,h3,p,dd,dt{
+    padding: 0px;
+    margin: 0px;
+}
+
+hr {
+    height: 0;
+    border: none;
+    border-top: 1px solid #dedede;
+}
+
+.topNavBar {
+    padding: 20px 0 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.topNavBar-inner {
+    padding: 0 16px 0 16px;
+}
+
+.topNavBar nav>ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.topNavBar nav>ul>li {
+    float: left;
+    margin-left: 17px;
+    margin-right: 17px;
+}
+
+.topNavBar nav>ul>li>a {
+    font-size: 12px;
+    color: #b7b7b7;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid transparent;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block;
+}
+
+.topNavBar nav>ul>li>a:hover {
+    border-bottom: 3px solid #e06567;
+}
+
+.topNavBar .logo {
+    font-size: 24px;
+    font-family: 'Arial Black';
+}
+
+.topNavBar .logo .rs {
+    color: #e06567;
+    margin-right: 4px;
+}
+
+.topNavBar .logo .card {
+    color: #b7b7b7;
+}
+
+.banner {
+    height: 515px;
+    background-image: url(./img/bj.jpg);
+    background-position: center center;
+    background-size: cover;
+}
+
+.banner .mask {
+    height: 515px;
+    background-color: rgba(0, 0, 0, 0.7)
+}
+
+.userCard {
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px 0px;
+}
+
+.userCard .welcome {
+    background-color: #e06567;
+    color: white;
+    display: inline-table;
+    padding: 4px 16px;
+    line-height: 22px;
+    position: relative;
+}
+
+.userCard .welcome .triangle {
+    display: block;
+    border: 10px solid transparent;
+    width: 0;
+    border-top-width: 0;
+    border-left-color: #e06567;
+    position: absolute;
+    left: 5px;
+    top: 100%
+}
+
+.userCard .PictureAndText {
+    padding: 50px;
+}
+
+.userCard .PictureAndText .text>h1 {
+    margin-bottom: 8px;
+    margin-top: 32px;
+}
+
+.userCard .PictureAndText .text>hr {
+    margin: 20px 0;
+}
+
+.userCard dl dt {
+    float: left;
+    width: 30%;
+    padding: 14px 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.userCard dl dd {
+    float: left;
+    width: 70%;
+    padding: 14px 0;
+    color: #9da0a7;
+    font-size: 14px;
+}
+
+.userCard>footer.media {
+    background: #e06567;
+    text-align: center;
+}
+
+.userCard>footer.media>a {
+    display: inline-block;
+    border-radius: 50%;
+    width: 45px;
+    padding: 10px 0;
+    margin: 12px 35px;
+}
+
+.userCard>footer.media>a:hover {
+    background: #cf5d5f;
+}
+
+.userCard svg {
+    width: 25px;
+    height: 25px;
+    fill: white;
+    vertical-align: top;
+}
+
+body .introduction {
+    margin-top: -330px;
+}
+
+.downloadResume-warpper {
+    text-align: center;
+    margin: 32px 0;
+}
+
+.introduction .downloadResume {
+    font-size: 14px;
+    line-height: 16px;
+    padding: 21px 55px;
+    display: inline-block;
+    border: 1px solid #cdcfd1;
+    background: #efefef;
+    border-radius: 4px;
+    color: #3d4451;
+    font-weight: bold;
+    transition: box-shadow 0.2s;
+}
+
+.introduction .downloadResume:hover {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 10px 0px;
+}
+
+.introduction .certificate {
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #3d4451;
+    font-family: kaiti;
+    font-size: 18px;
+    line-height: 24px;
+}
+body .skill{
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 30px;
+}
+body .skill > h2 {
+    font-size: 34px;
+    line-height: 41px;
+    font-weight: 600;
+    text-align: center;
+    color: #3d4451;
+}
+body .skill .skillList { 
+    border: 1px solid #cdcfd1;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px 0px;
+    background: white;
+    padding: 42px 40px 0px 40px;
+    margin: 30px;
+}
+.skill .skillList > li {
+    float: left;
+    width: 45%;
+    box-sizing: border-box;
+}
+.skill .skillList > li:nth-child(even){
+    float: right;
+}
+.skill .skillList > li > h3{
+    font-size: 14px;
+    line-height: 1.1;
+    padding-right:40px;
+    font-weight: normal;
+}
+.skill .skillList .progressBar{
+    border-radius: 2px;
+    background: #fae1e1;
+    height: 5px;
+    margin: 4px 0px 40px;
+}
+.skill .skillList .progressBar .progress{
+    background: #e6686a;
+    height: 100%;
+    width: 50%;
+    border-radius: 2px;
+}
