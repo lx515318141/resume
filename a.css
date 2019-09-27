@@ -9,6 +9,7 @@ a {
 }
 ul,ol{
     list-style: none;
+    padding: 0px;
 }
 .clearfix::after {
     content: '';
@@ -208,30 +209,30 @@ body .introduction {
     font-size: 18px;
     line-height: 24px;
 }
-body .skill{
+body .skill,body .portfolio{
     max-width: 940px;
     margin-left: auto;
     margin-right: auto;
     display: block;
-    margin-top: 30px;
+    margin-top: 60px;
 }
-body .skill > h2 {
+body .skill > h2,body .portfolio > h2 {
     font-size: 34px;
     line-height: 41px;
     font-weight: 600;
     text-align: center;
     color: #3d4451;
 }
-body .skill .skillList { 
+body .skill .skillList{ 
     border: 1px solid #cdcfd1;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px 0px;
     background: white;
     padding: 42px 40px 0px 40px;
-    margin: 30px;
+    margin: 30px auto;
 }
 .skill .skillList > li {
     float: left;
-    width: 45%;
+    width: 48%;
     box-sizing: border-box;
 }
 .skill .skillList > li:nth-child(even){
@@ -240,7 +241,6 @@ body .skill .skillList {
 .skill .skillList > li > h3{
     font-size: 14px;
     line-height: 1.1;
-    padding-right:40px;
     font-weight: normal;
 }
 .skill .skillList .progressBar{
@@ -254,4 +254,61 @@ body .skill .skillList {
     height: 100%;
     width: 50%;
     border-radius: 2px;
+}
+body .portfolio{
+    text-align: center;
+    margin-bottom: 100px;
+}
+body .portfolio > nav{
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 20px;
+}
+body .portfolio .group {
+    display: inline-block;
+    margin: 0 auto;
+    vertical-align: top;
+}
+body .portfolio .group > li {
+    float: left;
+    margin-left: 40px;
+    cursor: pointer;
+}
+body .portfolio .group > li:first-child{
+    margin-left: 0px;
+}
+body .portfolio .bar{
+    height: 5px;
+    background: white;
+    border-radius: 3px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+body .portfolio .bar .bar-inner{
+    height: 100%;
+    width: 20%;
+    background: #e6686a;
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+body .portfolio .bar.shate-1 .bar-inner{
+    width: 33px;
+    margin-left: 0px;
+}
+body .portfolio .bar.shate-2 .bar-inner{
+    width: 38px;
+    margin-left: 70px;
+}
+body .portfolio .bar.shate-3 .bar-inner{
+    width: 45px;
+    margin-left: 143px;
+}
+body .portfolio .works{
+    position: relative;
+}
+body .portfolio .works .big,
+body .portfolio .works .small{
+    position: absolute;
+
 }
