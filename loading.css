@@ -1,0 +1,41 @@
+.site-welcome{
+    display: none;
+    background: #888;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+    /* 设置元素的堆叠顺序，堆叠顺序高的元素永远显示在堆叠顺序低的元素的前面，即重叠时显示在上面 */
+    justify-content: center;
+    align-items: center;
+}
+.site-welcome.active{
+    display: flex;
+}
+.loading {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+.loading::before,.loading::after{
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: #000;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    animation: s 1.5s linear infinite;
+}
+.loading::after{
+    animation-delay: 0.75s;
+}
+@keyframes s {
+    0%{
+        width: 0px; height: 0px; opacity: 1;
+    }
+    100%{
+        width: 100px; height: 100px; opacity: 0;
+    }
+}

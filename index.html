@@ -3,6 +3,7 @@
 <head>
     <title>我的简历</title>
     <link rel="stylesheet" href="./a.css">
+    <link rel="stylesheet" href="./loading.css">
     <script src="//at.alicdn.com/t/font_1434436_p79pyix44jo.js"></script>
     <style type="text/css">
         .icon {
@@ -12,37 +13,52 @@
             fill: currentColor;
             overflow: hidden;
         }
+        
     </style>
 </head>
 
 <body>
-    <div class="topNavBar">
+    <div id="siteWelcome" class="site-welcome active">
+            <div class="loading"></div>
+    </div>
+    <div id="topNavBar" class="topNavBar">
         <div class="topNavBar-inner clearfix">
             <a class="logo" href="#" alt="logo" style="float: left;">
                 <span class="rs">RS</span><span class="card">card</span>
             </a>
-            <nav style="float: right;">
+            <nav class="menu" style="float: right;">
                 <ul class="clearfix">
                     <li>
-                        <a href="#gy">关于</a>
+                        <a href="#siteAbout">关 于</a>
                     </li>
                     <li>
-                        <a href="#jn">技能</a>
+                        <a href="#siteSkills">技 能</a>
+                    </li>
+                    <li class="menuTigger">
+                        <a href="#siteWorks">作 品</a>
+                        <ul class="submenu">
+                            <li>作品1</li>
+                            <li>作品2</li>
+                            <li>作品3</li>
+                        </ul>
+                    </li>
+                    <li class="menuTigger">
+                        <a href="#">博 客</a>
+                        <!-- menuTigger触发一个菜单 -->
+                        <ul class="submenu">
+                                <li>博客1</li>
+                                <li>博客2</li>
+                                <li>博客3</li>
+                            </ul>
                     </li>
                     <li>
-                        <a href="#zp">作品</a>
+                        <a href="#">日 历</a>
                     </li>
                     <li>
-                        <a href="#">博客</a>
+                        <a href="#">联 系 方 式</a>
                     </li>
                     <li>
-                        <a href="#">日历</a>
-                    </li>
-                    <li>
-                        <a href="#">联系方式</a>
-                    </li>
-                    <li>
-                        <a href="#">其他</a>
+                        <a href="#">其 他</a>
                     </li>
                 </ul>
             </nav>
@@ -52,7 +68,7 @@
         <div class="mask"></div>
     </div>
     <main id="gy" class="introduction">
-        <div class="userCard">
+        <div class="userCard"   id="siteAbout">
             <div class="PictureAndText clearfix">
                 <div class="picture" style="float: left; margin-right: 65px;">
                     <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
@@ -113,7 +129,7 @@
             获得Photoshop图形图像处理高级图像制作员证书
         </p>
     </main>
-    <section id="jn" class="skill">
+    <section id="siteSkills" class="skill">
         <h2>技能</h2>
         <ol class="skillList clearfix">
             <li>
@@ -166,7 +182,7 @@
             </li>
         </ol>
     </section>
-    <section id="zp" class="portfolio">
+    <section id="siteWorks" class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol class="group clearfix">
@@ -180,6 +196,7 @@
         </nav>
         <script>
             protfolio1.onclick = function () {
+            //当protfolio1被点击时运行一个函数
                 protfolioBar.className = 'bar shate-1'
             }
             protfolio2.onclick = function () {
@@ -201,6 +218,49 @@
             </div>
         </div>
     </section>
+    <script>
+        setTimeout(function(){
+            siteWelcome.classList.remove('active');
+        }, 1000);
+        window.onscroll = function(){
+            if(window.scrollY > 0){
+            //window.scrollY：文档从顶部开始滚动过的像素值
+                topNavBar.classList.add('sticky')
+            }else{
+                topNavBar.classList.remove('sticky')
+            }
+        }
+        let liTags = document.querySelectorAll('nav.menu > ul > li');
+        //给一个选择器，找到选择器中所有匹配的li
+        for(let i = 0; i < liTags.length; i++){
+            //遍历这个liTags
+            liTags[i].onmouseenter = function(x){
+            //监听这个hash里的元素，当鼠标放在它上面的时候，运行一个函数
+                x.currentTarget.classList.add('active');
+            // 给这个元素的class加上active状态
+            }
+            liTags[i].onmouseleave = function(x){
+                x.currentTarget.classList.remove('active');
+            }
+        }
+        let aTags = document.querySelectorAll('nav.menu > ul > li > a');
+        for(let i=0; i<aTags.length; i++){
+            aTags[i].onclick = function(x){
+                x.preventDefault();
+                // 阻止a标签的默认动作，即不会转跳
+                let a = x.currentTarget;
+                // 获取到我们监听的a标签
+                let href = a.getAttribute('href');
+                //获取a标签的href，如果直接用a.href,获得的是经过浏览器解析后的href的内容，所以要用a.getAttribute('href')
+                let element = document.querySelector(href);
+                //通过选择器获取匹配这个href的元素，即与id与该a标签的href一致的元素
+                let top = element.offsetTop
+                // 得到该元素顶端距离页面顶端的距离top，注意是距离页面顶端，不是距离窗口顶端，这个top值是固定的
+                window.scrollTo(0, top-80);
+                // 让window滑动到X方向不变，Y方向top减80
+            }
+        }
+    </script>
 </body>
 
 </html>
