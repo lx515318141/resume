@@ -49,6 +49,7 @@ hr {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   color: #3d4451;
   z-index: 1;
+  /* 设置元素的堆叠顺序，数值高的会叠在数值低的元素上面，当两者重叠时会显示在上面 */
 }
 
 .topNavBar-inner {
@@ -75,7 +76,9 @@ hr {
 .topNavBar nav > ul > li > a {
   font-size: 12px;
   color: inherit;
+  /* 继承其父级元素的颜色，inherit意为继承 */
   font-weight: bold;
+  /* 字体加粗 */
   padding-top: 5px;
   padding-bottom: 5px;
   display: block;

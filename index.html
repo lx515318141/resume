@@ -13,13 +13,12 @@
             fill: currentColor;
             overflow: hidden;
         }
-        
     </style>
 </head>
 
 <body>
     <div id="siteWelcome" class="site-welcome active">
-            <div class="loading"></div>
+        <div class="loading"></div>
     </div>
     <div id="topNavBar" class="topNavBar">
         <div class="topNavBar-inner clearfix">
@@ -44,12 +43,12 @@
                     </li>
                     <li class="menuTigger">
                         <a href="#">博 客</a>
-                        <!-- menuTigger触发一个菜单 -->
+                        <!-- menuTigger的意思为触发一个菜单 -->
                         <ul class="submenu">
-                                <li>博客1</li>
-                                <li>博客2</li>
-                                <li>博客3</li>
-                            </ul>
+                            <li>博客1</li>
+                            <li>博客2</li>
+                            <li>博客3</li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#">日 历</a>
@@ -68,7 +67,7 @@
         <div class="mask"></div>
     </div>
     <main id="gy" class="introduction">
-        <div class="userCard"   id="siteAbout">
+        <div class="userCard" id="siteAbout">
             <div class="PictureAndText clearfix">
                 <div class="picture" style="float: left; margin-right: 65px;">
                     <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
@@ -196,7 +195,7 @@
         </nav>
         <script>
             protfolio1.onclick = function () {
-            //当protfolio1被点击时运行一个函数
+                //当protfolio1被点击时运行一个函数
                 protfolioBar.className = 'bar shate-1'
             }
             protfolio2.onclick = function () {
@@ -218,47 +217,69 @@
             </div>
         </div>
     </section>
+    <script src="https://cdn.bootcss.com/tween.js/r14/Tween.js"></script>
     <script>
-        setTimeout(function(){
+        setTimeout(function () {
             siteWelcome.classList.remove('active');
         }, 1000);
-        window.onscroll = function(){
-            if(window.scrollY > 0){
-            //window.scrollY：文档从顶部开始滚动过的像素值
+        window.onscroll = function () {
+            if (window.scrollY > 0) {
+                //window.scrollY：文档从顶部开始滚动过的像素值
                 topNavBar.classList.add('sticky')
-            }else{
+            } else {
                 topNavBar.classList.remove('sticky')
             }
         }
         let liTags = document.querySelectorAll('nav.menu > ul > li');
         //给一个选择器，找到选择器中所有匹配的li
-        for(let i = 0; i < liTags.length; i++){
+        for (let i = 0; i < liTags.length; i++) {
             //遍历这个liTags
-            liTags[i].onmouseenter = function(x){
-            //监听这个hash里的元素，当鼠标放在它上面的时候，运行一个函数
+            liTags[i].onmouseenter = function (x) {
+                //监听这个hash里的元素，当鼠标放在它上面的时候，运行一个函数
                 x.currentTarget.classList.add('active');
-            // 给这个元素的class加上active状态
+                // 给这个元素的class加上active状态
             }
-            liTags[i].onmouseleave = function(x){
+            liTags[i].onmouseleave = function (x) {
                 x.currentTarget.classList.remove('active');
             }
         }
         let aTags = document.querySelectorAll('nav.menu > ul > li > a');
-        for(let i=0; i<aTags.length; i++){
-            aTags[i].onclick = function(x){
+        function animate(time) {
+            requestAnimationFrame(animate);
+            TWEEN.update(time);
+        }
+        requestAnimationFrame(animate);
+
+        for (let i = 0; i < aTags.length; i++) {
+            aTags[i].onclick = function (x) {
                 x.preventDefault();
                 // 阻止a标签的默认动作，即不会转跳
-                let a = x.currentTarget;
-                // 获取到我们监听的a标签
-                let href = a.getAttribute('href');
-                //获取a标签的href，如果直接用a.href,获得的是经过浏览器解析后的href的内容，所以要用a.getAttribute('href')
-                let element = document.querySelector(href);
-                //通过选择器获取匹配这个href的元素，即与id与该a标签的href一致的元素
-                let top = element.offsetTop
-                // 得到该元素顶端距离页面顶端的距离top，注意是距离页面顶端，不是距离窗口顶端，这个top值是固定的
-                window.scrollTo(0, top-80);
+                // let a = x.currentTarget;  获取到我们监听的元素，即a标签
+                // let href = a.getAttribute('href');  获取a标签的href，如果直接用a.href,获得的是经过浏览器解析后的href的内容，所以要用a.getAttribute('href')
+                // let element = document.querySelector(href);  通过选择器获取匹配这个href的元素，即与id与该a标签的href一致的元素
+                // let top = element.offsetTop；  得到该元素顶端距离页面顶端的距离top，注意是距离页面顶端，不是距离窗口顶端，这个top值是固定值
+                let top = document.querySelector(x.currentTarget.getAttribute('href')).offsetTop;
+                //这句等于上面四句
                 // 让window滑动到X方向不变，Y方向top减80
+
+                let currentTop = window.scrollY;
+                // 页面划过的距离，即窗口顶部到页面顶部的距离
+                let targetTop = top - 80;
+                // 元素顶部到页面顶部的距离
+                let s = targetTop - currentTop;
+                var coords = { y: currentTop };
+                var t = Math.abs((s/100)*300);
+                if(t>500){t = 500;}
+                var tween = new TWEEN.Tween(coords)
+                    .to({ y: targetTop }, t)
+                    .easing(TWEEN.Easing.Quadratic.InOut)
+                    .onUpdate(function () {
+                        window.scrollTo(0, coords.y);
+                    })
+                    .start;
+
             }
+
         }
     </script>
 </body>
