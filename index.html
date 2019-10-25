@@ -3,7 +3,6 @@
 <head>
     <title>我的简历</title>
     <link rel="stylesheet" href="./a.css">
-    <link rel="stylesheet" href="./loading.css">
     <script src="//at.alicdn.com/t/font_1434436_p79pyix44jo.js"></script>
     <style type="text/css">
         .icon {
@@ -66,8 +65,8 @@
     <div class="banner">
         <div class="mask"></div>
     </div>
-    <main id="gy" class="introduction">
-        <div class="userCard" id="siteAbout">
+    <main class="introduction">
+        <div data-x class="userCard" id="siteAbout">
             <div class="PictureAndText clearfix">
                 <div class="picture" style="float: left; margin-right: 65px;">
                     <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
@@ -128,7 +127,7 @@
             获得Photoshop图形图像处理高级图像制作员证书
         </p>
     </main>
-    <section id="siteSkills" class="skill">
+    <section data-x id="siteSkills" class="skill">
         <h2>技能</h2>
         <ol class="skillList clearfix">
             <li>
@@ -181,7 +180,7 @@
             </li>
         </ol>
     </section>
-    <section id="siteWorks" class="portfolio">
+    <section data-x id="siteWorks" class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol class="group clearfix">
@@ -217,34 +216,75 @@
             </div>
         </div>
     </section>
-    <script src="https://cdn.bootcss.com/tween.js/r14/Tween.js"></script>
+    <script src="https://cdn.bootcss.com/tween.js/17.1.1/Tween.min.js"></script>
     <script>
-        setTimeout(function () {
-            siteWelcome.classList.remove('active');
-        }, 1000);
+        let specialTags = document.querySelectorAll('[data-x]');
+        for (var i = 0; i < specialTags.length; i++) {
+            specialTags[i].classList.add('offset');
+        }
+        findClosest();
+        // 先运行一遍这个函数，为了让UserCard先向上弹一次
         window.onscroll = function () {
+        // 监听屏幕滑动
             if (window.scrollY > 0) {
                 //window.scrollY：文档从顶部开始滚动过的像素值
                 topNavBar.classList.add('sticky')
+                // 给topNavBar的class添加sticky
             } else {
                 topNavBar.classList.remove('sticky')
             }
+            findClosest();
+            // 寻找离窗口顶部最近的元素
+
         }
+        function findClosest() {
+        // 寻找距离窗口顶部最近元素的函数
+            let specialTags = document.querySelectorAll('[data-x]');
+            // 找到所有有data-x的元素
+            let minIndex = 0;
+            for (var i = 1; i < specialTags.length; i++) {
+                // 遍历这些元素
+                if (Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
+                    minIndex = i;
+                // 类似寻找最小值，先把第一个设为最小，再和第二个比较，如果第二个小，就把第二个变为最小值，如果第一个小，就继续比较
+                }
+            }
+            specialTags[minIndex].classList.remove('offset');
+            // 给距离窗口顶部最近的元素加上offset状态
+            let id = specialTags[minIndex].id;
+            // 获取最近元素的id
+            let a = document.querySelector('a[href="#' + id + '"]');
+            // 通过和这个ID同名的href，找到a标签，这里ID是一个变量
+            let li = a.parentNode;
+            // 找到a标签的父级元素
+            let brotherAndChild = li.parentNode.children;
+            // 找到li下所有子元素，包括a标签自己
+            for (var i = 0; i < brotherAndChild.length; i++) {
+            // 遍历a标签自己及其全部兄弟元素，将他们都移除highlight状态
+                brotherAndChild[i].classList.remove('highlight');
+            }
+            li.classList.add('highlight');
+            // 再把最近的元素加上highlight状态
+        }
+
+
         let liTags = document.querySelectorAll('nav.menu > ul > li');
         //给一个选择器，找到选择器中所有匹配的li
         for (let i = 0; i < liTags.length; i++) {
             //遍历这个liTags
             liTags[i].onmouseenter = function (x) {
-                //监听这个hash里的元素，当鼠标放在它上面的时候，运行一个函数
+                // 监听这个hash里的元素，当鼠标放在它上面的时候，给这个元素加上active状态
                 x.currentTarget.classList.add('active');
-                // 给这个元素的class加上active状态
             }
             liTags[i].onmouseleave = function (x) {
+                // 监听这个hash里的元素，当鼠标离开它的时候，移除active状态
                 x.currentTarget.classList.remove('active');
             }
         }
         let aTags = document.querySelectorAll('nav.menu > ul > li > a');
+
         function animate(time) {
+        // 使用tween需要这段代码，让电脑根据实际情况分批时间
             requestAnimationFrame(animate);
             TWEEN.update(time);
         }
@@ -268,16 +308,22 @@
                 // 元素顶部到页面顶部的距离
                 let s = targetTop - currentTop;
                 var coords = { y: currentTop };
-                var t = Math.abs((s/100)*300);
-                if(t>500){t = 500;}
+                var t = Math.abs((s / 100) * 300);
+                // 距离除以时间后加绝对值，因为距离可能出现负数，但是时间不可以，所以要加绝对值
+                if (t > 500) { t = 500; }
+                // 当时间大于0.5s时就让时间等于0.5s
                 var tween = new TWEEN.Tween(coords)
+                // tween的终点位置为coords
                     .to({ y: targetTop }, t)
+                    // 起点位置和时间
                     .easing(TWEEN.Easing.Quadratic.InOut)
+                    // 使用慢入慢出模式
                     .onUpdate(function () {
+                    // 每当点击时就会运行下面的函数，窗口就会缓动到终点位置，速度时间根据tween自行计算分配
                         window.scrollTo(0, coords.y);
                     })
-                    .start;
-
+                    .start();
+                    // 开水运行tween
             }
 
         }
