@@ -32,7 +32,13 @@ hr {
   border: none;
   border-top: 1px solid #dedede;
 }
-
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
 [data-x].offset{
   transform: translateY(100px);
 }
@@ -351,55 +357,17 @@ body .portfolio {
   text-align: center;
   margin-bottom: 100px;
 }
-body .portfolio > nav {
-  text-align: center;
-  display: inline-block;
-  vertical-align: top;
-  margin-top: 20px;
+body .portfolio > h2{
+  margin-bottom: 32px;
 }
-body .portfolio .group {
-  display: inline-block;
-  margin: 0 auto;
-  vertical-align: top;
+body .portfolio .swiper-container {
+  width: 747px;
+  height: 420px;
 }
-body .portfolio .group > li {
-  float: left;
-  margin-left: 40px;
-  cursor: pointer;
-}
-body .portfolio .group > li:first-child {
-  margin-left: 0px;
-}
-body .portfolio .bar {
-  height: 5px;
-  background: white;
-  border-radius: 3px;
-  margin-top: 5px;
-  margin-bottom: 30px;
-}
-body .portfolio .bar .bar-inner {
-  height: 100%;
-  width: 20%;
-  background: #e6686a;
-  border-radius: 3px;
-  transition: all 0.5s;
-}
-body .portfolio .bar.shate-1 .bar-inner {
-  width: 33px;
-  margin-left: 0px;
-}
-body .portfolio .bar.shate-2 .bar-inner {
-  width: 38px;
-  margin-left: 70px;
-}
-body .portfolio .bar.shate-3 .bar-inner {
-  width: 45px;
-  margin-left: 143px;
-}
-body .portfolio .works {
-  position: relative;
-}
-body .portfolio .works .big,
-body .portfolio .works .small {
-  position: absolute;
+body .portfolio .swiper-button-prev,
+body .portfolio .swiper-button-next{
+background-color: white;
+border-radius: 50%;
+width: 64px;
+height: 64px;
 }
