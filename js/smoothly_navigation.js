@@ -1,10 +1,8 @@
-!function() {
-  var view = document.querySelector("nav.menu");
-  var controller = {
-    view: null,
+!function(){
+  var view = View("nav.menu");
+  var controller = Controller({
     aTags: null,
     init: function(view) {
-      this.view = view;
       this.initAnimation();
       this.bindEvents();
     },
@@ -62,6 +60,6 @@
         .start();
       // 开始运行tween
     }
-  };
+  })
   controller.init(view);
 }.call();

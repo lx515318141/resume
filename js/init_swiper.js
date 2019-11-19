@@ -1,7 +1,10 @@
-!function() {
-  var view = document.querySelector("#mySlides");
-  var controller = {
-    view: null,
+!function(){
+  var view = View("#mySlides");
+
+  var controller = Controller({
+    init: function(view) {
+      this.initSwiper();
+    },
     swiper: null,
     swiperOptions: {
       loop: true,
@@ -13,16 +16,12 @@
         prevEl: ".swiper-button-prev"
       }
     },
-    init: function(view) {
-      this.view = view;
-      this.initSwiper();
-    },
     initSwiper: function() {
       this.swiper = new Swiper(
         this.view.querySelector(".swiper-container"),
         this.swiperOptions
       );
     }
-  };
+  });
   controller.init(view);
 }.call();
